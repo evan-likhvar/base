@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/css/uikit.min.css" />
 
-    <link rel="stylesheet" href="{{asset('/css/admin.css')}}">
-
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
 </head>
 <body>
 
@@ -57,8 +60,6 @@
         </main>
     </div>
 </div>
-
-<script src="{{asset('/js/app.js')}}"></script>
 
 </body>
 </html>
