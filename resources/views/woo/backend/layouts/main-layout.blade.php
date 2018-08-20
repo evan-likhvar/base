@@ -7,11 +7,11 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/css/uikit.min.css" />
+    <link rel="stylesheet" href="{{asset('backend/css/app.css')}}" />
 
     <!-- UIkit JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
+    <script src="{{asset('backend/js/app.js')}}"></script>
+
 </head>
 <body>
 

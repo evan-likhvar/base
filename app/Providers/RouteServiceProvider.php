@@ -39,7 +39,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
-        $this->mapBackRoutes();
+
+        $this->mapBackendRoutes();
 
         if (App::environment(['local', 'testing']))
             $this->mapDevRoutes();
@@ -96,9 +97,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapBackRoutes()
+    protected function mapBackendRoutes()
     {
-        Route::prefix('back')
+        Route::prefix('dashboard')
         ->middleware('web','auth')
             ->namespace('App\Http\Controllers\Back')
             ->group(base_path('routes/backend.php'));
