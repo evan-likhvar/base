@@ -1,3 +1,3 @@
 <?php
 
-Route::get('/', 'BackController@index')->name('back.index');
+Route::get('/', 'BackController@index')->name('backend.index');
