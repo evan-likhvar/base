@@ -49,7 +49,7 @@ class PermissionsRolesSeeder extends Seeder
         DB::table('permission_role')->insert([
             'id'=>8,
             'role_id' => 1,
-            'permission_id' => 7,
+            'permission_id' => 8,
         ]);
         DB::table('permission_role')->insert([
             'id'=>9,

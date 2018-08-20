@@ -10,4 +10,12 @@ class Role extends Model
         'name', 'active',
     ];
 
+    public function users() {
+        return $this->belongsToMany('App\Models\User');
+    }
+
+    public function permissions() {
+        return $this->belongsToMany('App\Models\Permission');
+    }
+
 }
