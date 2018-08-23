@@ -100,7 +100,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapBackendRoutes()
     {
         Route::prefix('dashboard')
-        ->middleware('web','auth')
+        ->middleware('web','auth','dashboard.access')
             ->namespace('App\Http\Controllers\Back')
             ->group(base_path('routes/backend.php'));
     }
