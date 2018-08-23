@@ -12,7 +12,7 @@ namespace App\Repositories\SiteUser;
 use App\User;
 use Carbon\Carbon;
 
-class BackUser
+class BackUsers
 {
 
     private $model;

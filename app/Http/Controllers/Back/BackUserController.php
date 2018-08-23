@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Back;
 
 
+use App\Repositories\SiteUser\BackUsers;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,7 @@ class BackUserController extends BackController
     {
         parent::__construct();
         $this->sectionVars = array_add($this->sectionVars,'title','Users info');
+        $this->sectionVars = array_add($this->sectionVars,'users',new BackUsers());
 
         $this->vars = array_add(
             $this->vars,'section_title',
@@ -33,6 +35,13 @@ class BackUserController extends BackController
             if (!empty($input['filter_email']))
                 $query->where('email', 'like', $input['filter_email'] . '%');
         });
+
+        if (!empty($input['sort'])) {
+            //var_dump($input['order']);
+            $users->orderBy($input['sort'], $input['order']);
+        } else {
+            $users->orderBy('id', 'desc');
+        }
 
         $users = $users->paginate(20);
 

@@ -25,7 +25,7 @@
                 <ul class="uk-nav uk-nav-default ">
 
                     <li class="uk-margin-small-bottom">
-                        <a href="{{route('user.index')}}">
+                        <a href="{{route('backend.user.index')}}">
                             <span class="uk-margin-small-right" uk-icon="user"></span>
                             Users
                         </a>
