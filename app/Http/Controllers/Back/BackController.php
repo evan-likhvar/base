@@ -17,6 +17,9 @@ class BackController extends WebController
 
     public function renderOutput()
     {
+
+        //dd($this->vars);
+
         return view($this->template)->with($this->vars);//->withMessages($this->frontMessage);
     }
 

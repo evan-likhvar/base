@@ -11,23 +11,43 @@
 
     <!-- UIkit JS -->
     <script src="{{asset('backend/js/app.js')}}"></script>
+    <style>
+        html, body {height: 100%;}
+    </style>
 
 </head>
 <body>
 
-<div class="admin-container" id="app">
-    <div class="uk-flex">
-        <aside class="admin-sidebar uk-width-auto uk-padding">
+<div class="admin-container uk-background-secondary uk-height-1-1" id="app">
+    <div class="uk-flex uk-height-1-1">
+        <aside class="admin-sidebar uk-width-auto uk-padding uk-background-muted uk-height-1-1">
             <nav>
                 <ul class="uk-nav uk-nav-default ">
 
                     <li class="uk-margin-small-bottom">
-                        <a href="#">
-                            <span class="uk-margin-small-right" uk-icon="users"></span>
+                        <a href="{{route('backend.user.index')}}">
+                            <span class="uk-margin-small-right" uk-icon="user"></span>
                             Users
                         </a>
                     </li>
-
+                    <li class="uk-margin-small-bottom">
+                        <a href="#">
+                            <span class="uk-margin-small-right" uk-icon="users"></span>
+                            Roles
+                        </a>
+                    </li>
+                    <li class="uk-margin-small-bottom">
+                        <a href="#">
+                            <span class="uk-margin-small-right" uk-icon="lock"></span>
+                            Permissions
+                        </a>
+                    </li>
+                    <li class="uk-margin-small-bottom">
+                        <a href="#">
+                            <span class="uk-margin-small-right" uk-icon="world"></span>
+                            Languages
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </aside>
@@ -54,7 +74,8 @@
                     </p>
                 </div>
             @endif--}}
-            <section class="uk-padding">
+            <section class="uk-padding-small uk-padding-remove-top uk-padding-remove-right">
+                @yield('section_title')
                 @yield('content')
             </section>
         </main>
