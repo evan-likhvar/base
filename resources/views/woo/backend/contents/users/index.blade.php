@@ -22,6 +22,7 @@
 {{route('backend.user.index')}}?sort=email&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}
                     ">e-mail</a>
         </th>
+        <th>roles</th>
         <th>language</th>
         <th>dashboard</th>
         <th>active</th>
@@ -43,6 +44,7 @@
             <td>{{$user->id}}</td>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
+            <td>{{$user->rolesToString()}}</td>
             <td>{{$user->language->name}}</td>
             <td>{{$user->dashboard_enable == 1 ? 'enabled' : 'disabled'}}</td>
             <td>{{$user->active == 1 ? 'yes' : 'no'}}</td>

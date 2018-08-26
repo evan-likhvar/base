@@ -10,7 +10,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password','language_id','dashboard_enable','active'
+        'name', 'email', 'password', 'language_id', 'dashboard_enable', 'active'
     ];
 
     protected $hidden = [
@@ -27,32 +27,32 @@ class User extends Authenticatable
         return $this->language ? $this->language->name : config('settings.defaultCountryLanguage');
     }
 
-    public function roles() {
+    public function roles()
+    {
         return $this->belongsToMany('App\Models\Role');
     }
 
     //  'string'  array('View_Admin','ADD_ARTICLES')
     //
-    public function canDo($permission, $require = FALSE) {
+    public function canDo($permission, $require = FALSE)
+    {
 
-        if(is_array($permission)) {
-            foreach($permission as $permName) {
+        if (is_array($permission)) {
+            foreach ($permission as $permName) {
 
                 $permName = $this->canDo($permName);
-                if($permName && !$require) {
+                if ($permName && !$require) {
                     return TRUE;
-                }
-                else if(!$permName  && $require) {
+                } else if (!$permName && $require) {
                     return FALSE;
                 }
             }
 
-            return  $require;
-        }
-        else {
-            foreach($this->roles as $role) {
-                foreach($role->permissions as $perm) {
-                    if(str_is($permission,$perm->name)) {
+            return $require;
+        } else {
+            foreach ($this->roles as $role) {
+                foreach ($role->permissions as $perm) {
+                    if (str_is($permission, $perm->name)) {
                         return TRUE;
                     }
                 }
@@ -86,5 +86,13 @@ class User extends Authenticatable
         }
 
         return false;
+    }
+
+    public function rolesToString()
+    {
+        $rolesString = '';
+        foreach ($this->roles as $role)
+            $rolesString .= $role->name.' ';
+        return trim($rolesString);
     }
 }

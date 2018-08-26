@@ -3,23 +3,22 @@
 namespace App\Http\Controllers\Back;
 
 
-use App\Repositories\SiteUser\BackUsers;
-use App\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
-class BackUserController extends BackController
+class BackRoleController extends BackController
 {
     private $sectionVars;
 
     public function __construct()
     {
         parent::__construct();
-        $this->sectionVars = array_add($this->sectionVars,'title','Users info');
-        $this->sectionVars = array_add($this->sectionVars,'users',new BackUsers());
+        $this->sectionVars = array_add($this->sectionVars,'title','Roles info');
+        $this->sectionVars = array_add($this->sectionVars,'roles', Role::all());
 
         $this->vars = array_add(
             $this->vars,'section_title',
-            view(config('settings.backEndTheme') . '.section-title.users.title')
+            view(config('settings.backEndTheme') . '.section-title.roles.title')
                 ->with($this->sectionVars)->render()
         );
     }
@@ -28,7 +27,7 @@ class BackUserController extends BackController
     {
         $input = Request::capture()->all();
 
-        $users = User::whereNested(function ($query) use ($input) {
+        $roles = Role::whereNested(function ($query) use ($input) {
             if (!empty($input['filter_name']))
                 $query->where('name', 'like', $input['filter_name'] . '%');
 
@@ -37,18 +36,18 @@ class BackUserController extends BackController
         });
 
         if (!empty($input['sort'])) {
-            $users->orderBy($input['sort'], $input['order']);
+            $roles->orderBy($input['sort'], $input['order']);
         } else {
-            $users->orderBy('id', 'desc');
+            $roles->orderBy('id', 'desc');
         }
 
-        $users = $users->paginate(20);
-//todo Add user roles into the user table content
+        $roles = $roles->paginate(20);
+
         $this->vars = array_add(
             $this->vars,
             'content',
-            view(config('settings.backEndTheme') . '.contents.users.index')
-                ->with('users', $users)->render()
+            view(config('settings.backEndTheme') . '.contents.roles.index')
+                ->with('roles', $roles)->render()
         );
 
         return $this->renderOutput();

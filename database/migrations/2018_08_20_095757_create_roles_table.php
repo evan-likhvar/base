@@ -17,6 +17,7 @@ class CreateRolesTable extends Migration
             $table->increments('id');
             $table->string('name',30)->index();
             $table->boolean('active')->index()->default(0);
+            $table->timestamps();
         });
     }
 

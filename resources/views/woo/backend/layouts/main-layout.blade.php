@@ -20,7 +20,7 @@
 
 <div class="admin-container uk-background-secondary uk-height-1-1" id="app">
     <div class="uk-flex uk-height-1-1">
-        <aside class="admin-sidebar uk-width-auto uk-padding uk-background-muted uk-height-1-1">
+        <aside class="admin-sidebar uk-width-auto uk-padding-small uk-background-muted uk-height-1-1">
             <nav>
                 <ul class="uk-nav uk-nav-default ">
 
@@ -31,19 +31,19 @@
                         </a>
                     </li>
                     <li class="uk-margin-small-bottom">
-                        <a href="#">
+                        <a href="{{route('backend.role.index')}}">
                             <span class="uk-margin-small-right" uk-icon="users"></span>
                             Roles
                         </a>
                     </li>
                     <li class="uk-margin-small-bottom">
-                        <a href="#">
+                        <a href="{{route('backend.permission.index')}}">
                             <span class="uk-margin-small-right" uk-icon="lock"></span>
                             Permissions
                         </a>
                     </li>
                     <li class="uk-margin-small-bottom">
-                        <a href="#">
+                        <a href="{{route('backend.language.index')}}">
                             <span class="uk-margin-small-right" uk-icon="world"></span>
                             Languages
                         </a>

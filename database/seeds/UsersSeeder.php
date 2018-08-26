@@ -11,7 +11,7 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        $date = \Carbon\Carbon::now()->toDateTimeString();
+        $date = \Carbon\Carbon::now();//->toDateTimeString();
 
 
         DB::table('users')->insert([
@@ -22,8 +22,8 @@ class UsersSeeder extends Seeder
             'language_id' => 1,
             'dashboard_enable'=>1,
             'active'=>1,
-            'created_at' => $date,
-            'updated_at' => $date,
+            'created_at' => $date->addDay(-10),
+            'updated_at' => $date->addDay(-1),
         ]);
         DB::table('users')->insert([
             'id'=>2,
@@ -33,8 +33,8 @@ class UsersSeeder extends Seeder
             'language_id' => 1,
             'dashboard_enable'=>0,
             'active'=>0,
-            'created_at' => $date,
-            'updated_at' => $date,
+            'created_at' => $date->addDay(-3),
+            'updated_at' => $date->addDay(-9),
         ]);
         DB::table('users')->insert([
             'id'=>3,
@@ -44,8 +44,8 @@ class UsersSeeder extends Seeder
             'language_id' => 1,
             'dashboard_enable'=>0,
             'active'=>0,
-            'created_at' => $date,
-            'updated_at' => $date,
+            'created_at' => $date->addDay(-7),
+            'updated_at' => $date->addDay(-5),
         ]);
         DB::table('users')->insert([
             'id'=>4,
@@ -55,8 +55,8 @@ class UsersSeeder extends Seeder
             'language_id' => 1,
             'dashboard_enable'=>0,
             'active'=>0,
-            'created_at' => $date,
-            'updated_at' => $date,
+            'created_at' => $date->addDay(-8),
+            'updated_at' => $date->addDay(-4),
         ]);
 
     }

@@ -1,10 +1,10 @@
-<div class="uk-section uk-section-muted uk-padding-small">
-    <div class="uk-container">
-        <div class="uk-grid-match uk-child-width-1-4@m" uk-grid>
-            <div>
-                <h1>{{$title}}</h1>
+<div class="uk-section uk-section-muted uk-padding-remove">
+    <div class="uk-container uk-padding-small">
+        <div class="uk-grid-match" uk-grid>
+            <div class="uk-width-auto@m">
+                <h2>{{$title}}</h2>
             </div>
-            <div>
+            <div class="uk-width-1-3@m">
                 <div class="uk-grid-small uk-margin-remove-top" uk-grid>
                     <div class="uk-width-expand" uk-leader="fill: -">Total user:</div>
                     <div>{{$users->userCount()}}</div>
@@ -23,7 +23,7 @@
                 </div>
 
             </div>
-            <div>
+            <div class="uk-width-1-3@m">
                 <div class="uk-grid-small uk-margin-remove-top" uk-grid>
                     <div class="uk-width-expand" uk-leader="fill: -">New user last day:</div>
                     <div>{{$users->newUserForLastDay()}}</div>

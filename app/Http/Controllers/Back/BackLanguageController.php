@@ -2,24 +2,20 @@
 
 namespace App\Http\Controllers\Back;
 
-
-use App\Repositories\SiteUser\BackUsers;
-use App\User;
+use App\Models\Language;
 use Illuminate\Http\Request;
 
-class BackUserController extends BackController
+class BackLanguageController extends BackController
 {
     private $sectionVars;
 
     public function __construct()
     {
         parent::__construct();
-        $this->sectionVars = array_add($this->sectionVars,'title','Users info');
-        $this->sectionVars = array_add($this->sectionVars,'users',new BackUsers());
-
+        $this->sectionVars = array_add($this->sectionVars,'title','Language info');
         $this->vars = array_add(
             $this->vars,'section_title',
-            view(config('settings.backEndTheme') . '.section-title.users.title')
+            view(config('settings.backEndTheme') . '.section-title.languages.title')
                 ->with($this->sectionVars)->render()
         );
     }
@@ -28,7 +24,7 @@ class BackUserController extends BackController
     {
         $input = Request::capture()->all();
 
-        $users = User::whereNested(function ($query) use ($input) {
+        $languages = Language::whereNested(function ($query) use ($input) {
             if (!empty($input['filter_name']))
                 $query->where('name', 'like', $input['filter_name'] . '%');
 
@@ -37,18 +33,18 @@ class BackUserController extends BackController
         });
 
         if (!empty($input['sort'])) {
-            $users->orderBy($input['sort'], $input['order']);
+            $languages->orderBy($input['sort'], $input['order']);
         } else {
-            $users->orderBy('id', 'desc');
+            $languages->orderBy('id', 'desc');
         }
 
-        $users = $users->paginate(20);
-//todo Add user roles into the user table content
+        $languages = $languages->paginate(20);
+
         $this->vars = array_add(
             $this->vars,
             'content',
-            view(config('settings.backEndTheme') . '.contents.users.index')
-                ->with('users', $users)->render()
+            view(config('settings.backEndTheme') . '.contents.languages.index')
+                ->with('languages', $languages)->render()
         );
 
         return $this->renderOutput();
