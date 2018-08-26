@@ -41,7 +41,10 @@
             <td>{{$language->id}}</td>
             <td>{{$language->name}}</td>
             <td>{{$language->full_name}}</td>
-            <td>{{$language->active == 1 ? 'yes' : 'no'}}</td>
+            <td onclick="event.preventDefault();
+            var el = event.target.parentNode.firstElementChild.innerText;
+            console.log(el);
+                ">{{$language->active == 1 ? 'yes' : 'no'}}</td>
             <td>{{$language->created_at}}</td>
             <td>{{$language->updated_at}}</td>
         </tr>
