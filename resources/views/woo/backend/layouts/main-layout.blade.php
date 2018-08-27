@@ -74,7 +74,7 @@
                     </p>
                 </div>
             @endif--}}
-            <section class="uk-padding-small uk-padding-remove-top uk-padding-remove-right">
+            <section id="main-content" class="uk-padding-small uk-padding-remove-top uk-padding-remove-right">
                 @yield('section_title')
                 @yield('content')
             </section>
