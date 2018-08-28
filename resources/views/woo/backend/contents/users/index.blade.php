@@ -50,43 +50,18 @@
             <td>
                 <a href="" class="uk-icon-button" uk-icon="refresh"
                    onclick="event.preventDefault();toggleDashboard(event.target)">
-
                 </a>
                 <span class="{{$user->dashboard_enable == 1 ? 'uk-text-primary' : 'uk-text-danger'}}">{{$user->dashboard_enable == 1 ? 'enabled' : 'disabled'}}</span>
             </td>
-            <td>{{$user->active == 1 ? 'yes' : 'no'}}</td>
+            <td>
+                <a href="" class="uk-icon-button" uk-icon="refresh"
+                   onclick="event.preventDefault();toggleActiveUser(event.target)">
+                </a>
+                <span class="{{$user->active == 1 ? 'uk-text-primary' : 'uk-text-danger'}}">{{$user->active == 1 ? 'yes' : 'no'}}</span>
+            </td>
             <td>{{$user->created_at}}</td>
             <td>{{$user->updated_at}}</td>
         </tr>
     @endforeach
     </tbody>
 </table>
-
-<script>
-    function toggleDashboard(eventTarget) {
-        axios.get('/dashboard/toggle-dashboard-access/' + eventTarget.parentNode.parentNode.parentNode.firstElementChild.innerHTML)
-            .then(response => {
-                if (document.contains(document.getElementById("front-message"))) {
-                    document.getElementById("front-message").remove();
-                }
-                eventTarget.parentNode.nextElementSibling.innerHTML = response.data.result;
-                if (response.data.result == 'enabled') {
-                    eventTarget.parentNode.nextElementSibling.className = 'uk-text-primary';
-                } else {
-                    eventTarget.parentNode.nextElementSibling.className = 'uk-text-danger';
-                }
-                document.getElementById('main-table').insertAdjacentHTML('beforebegin', response.data.front_message);
-            })
-            .catch(function (err) {
-                console.log(err.message);
-                if (document.contains(document.getElementById("front-message"))) {
-                    document.getElementById("front-message").remove();
-                }
-                document.getElementById('main-table').insertAdjacentHTML('beforebegin',
-                    '<div id="front-message" class="uk-alert-danger" uk-alert><a class="uk-alert-close" uk-close></a><p>' +
-                    err.message
-                    + '</p></div>'
-                );
-            });
-    }
-</script>

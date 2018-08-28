@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Repositories\Registry\SessionRegistry;
+use App\Repositories\SiteMessageBag\SiteMessageBag;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\MessageBag;
 
 class WebController extends Controller
 {
@@ -26,15 +26,25 @@ class WebController extends Controller
 
     protected function setupFrontMessageBag()
     {
-        $this->frontMessage = new MessageBag();
+        $this->frontMessage = new SiteMessageBag();
         if (session('frontMessageBag')) {
             $this->frontMessage->merge(session('frontMessageBag'));
             session()->forget('frontMessageBag');
         }
     }
 
-    protected function addFrontMessage(string $message)
+    protected function addFrontMessage(array $message)
     {
-        $this->frontMessage->add('frontMessages', $message);
+        $this->frontMessage->addArray('frontMessages', $message);
+    }
+
+    protected function addResultMessage(array $message)
+    {
+        $this->frontMessage->addArray('resultMessages', $message);
+    }
+
+    protected function addErrorMessage(array $message)
+    {
+        $this->frontMessage->addArray('errorMessages', $message);
     }
 }

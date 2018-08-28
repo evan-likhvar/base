@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="{{asset('backend/css/app.css')}}" />
 
     <!-- UIkit JS -->
-    <script src="{{asset('backend/js/app.js')}}"></script>
+    <script src="{{asset('backend/js/all.js')}}"></script>
+{{--
+    <script src="{{asset('backend/js/backend.js')}}"></script>
+--}}
+
     <style>
         html, body {height: 100%;}
     </style>

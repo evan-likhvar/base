@@ -1,10 +1,6 @@
-<div uk-alert>
-    <a class="uk-alert-close" uk-close></a>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.</p>
-</div>
 
-<table class="uk-table uk-table-hover uk-table-divider uk-background-muted uk-table-small uk-text-small">
+<table id="main-table"
+       class="uk-table uk-table-hover uk-table-divider uk-background-muted uk-table-small uk-text-small">
     <thead>
     <tr>
         <th>
@@ -36,7 +32,12 @@
         <tr>
             <td>{{$role->id}}</td>
             <td>{{$role->name}}</td>
-            <td>{{$role->active == 1 ? 'yes' : 'no'}}</td>
+            <td>
+                <a href="" class="uk-icon-button" uk-icon="refresh"
+                   onclick="event.preventDefault();toggleActiveRole(event.target)">
+                </a>
+                <span class="{{$role->active == 1 ? 'uk-text-primary' : 'uk-text-danger'}}">{{$role->active == 1 ? 'yes' : 'no'}}</span>
+            </td>
             <td>{{$role->created_at}}</td>
             <td>{{$role->updated_at}}</td>
         </tr>

@@ -27,5 +27,8 @@ Route::name('backend')->resource('user',      'BackUserController',['except' => 
 
 
 //api routes
-Route::get('/toggle-dashboard-access/{user}', 'BackApiController@toggleDashboardAccess');
+Route::post('/toggle-dashboard-access', 'BackApiController@toggleDashboardAccessProperty');
+Route::post('/toggle-user-active',      'BackApiController@toggleUserActiveProperty');
+Route::post('/toggle-role-active',      'BackApiController@toggleRoleActiveProperty');
+Route::post('/toggle-language-active',  'BackApiController@toggleLanguageActiveProperty');
 

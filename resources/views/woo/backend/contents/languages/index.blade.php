@@ -1,10 +1,5 @@
-<div uk-alert>
-    <a class="uk-alert-close" uk-close></a>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.</p>
-</div>
-
-<table class="uk-table uk-table-hover uk-table-divider uk-background-muted uk-table-small uk-text-small">
+<table id="main-table"
+       class="uk-table uk-table-hover uk-table-divider uk-background-muted uk-table-small uk-text-small">
     <thead>
     <tr>
         <th>
@@ -41,10 +36,12 @@
             <td>{{$language->id}}</td>
             <td>{{$language->name}}</td>
             <td>{{$language->full_name}}</td>
-            <td onclick="event.preventDefault();
-            var el = event.target.parentNode.firstElementChild.innerText;
-            console.log(el);
-                ">{{$language->active == 1 ? 'yes' : 'no'}}</td>
+            <td>
+                <a href="" class="uk-icon-button" uk-icon="refresh"
+                   onclick="event.preventDefault();toggleActiveLanguage(event.target)">
+                </a>
+                <span class="{{$language->active == 1 ? 'uk-text-primary' : 'uk-text-danger'}}">{{$language->active == 1 ? 'yes' : 'no'}}</span>
+            </td>
             <td>{{$language->created_at}}</td>
             <td>{{$language->updated_at}}</td>
         </tr>
