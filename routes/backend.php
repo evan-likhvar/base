@@ -1,30 +1,12 @@
 <?php
 
-Route::get('/', 'BackController@index')->name('backend.index');
+Route::get('/',             'BackController@index')             ->name('backend.index');
+Route::get('/permission',   'BackPermissionController@index')   ->name('backend.permission.index');
+Route::post('/permission',  'BackPermissionController@update')  ->name('backend.permission.update');
 
-Route::name('backend')->resource('user',                'BackUserController',           ['only' => ['index']]);
-Route::name('backend')->resource('role',                'BackRoleController',           ['only' => ['index']]);
-Route::name('backend')->resource('permission',          'BackPermissionController',     ['only' => ['index','update']]);
-Route::name('backend')->resource('language',            'BackLanguageController',       ['only' => ['index']]);
-Route::name('backend')->resource('user',      'BackUserController',['except' => ['show']]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::name('backend')->resource('user',        'BackUserController',           ['except' => ['show','destroy']]);
+Route::name('backend')->resource('role',        'BackRoleController',           ['except' => ['show','destroy']]);
+Route::name('backend')->resource('language',    'BackLanguageController',       ['except' => ['show','destroy']]);
 
 //api routes
 Route::post('/toggle-dashboard-access', 'BackApiController@toggleDashboardAccessProperty');

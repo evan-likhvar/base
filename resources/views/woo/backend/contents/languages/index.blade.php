@@ -1,5 +1,6 @@
+@include(config('settings.themeIncludes').'.displayMessages')
 <table id="main-table"
-       class="uk-table uk-table-hover uk-table-divider uk-background-muted uk-table-small uk-text-small">
+       class="uk-table uk-table-hover uk-table-divider uk-background-muted uk-table-small uk-text-small uk-padding-small uk-margin-small">
     <thead>
     <tr>
         <th>
@@ -30,12 +31,23 @@
         </th>
     </tr>
     </thead>
+    <tfoot>
+    <tr>
+        <td></td>
+        <td >
+            <a class="uk-button uk-button-secondary uk-button-small" href="{{route('backend.language.create')}}">Create new</a>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tfoot>
     <tbody>
     @foreach($languages as $language)
         <tr>
             <td>{{$language->id}}</td>
-            <td>{{$language->name}}</td>
-            <td>{{$language->full_name}}</td>
+            <td><a href="{{route('backend.language.edit',$language->id)}}">{{$language->name}}</a></td>
+            <td><a href="{{route('backend.language.edit',$language->id)}}">{{$language->full_name}}</a></td>
             <td>
                 <a href="" class="uk-icon-button" uk-icon="refresh"
                    onclick="event.preventDefault();toggleActiveLanguage(event.target)">

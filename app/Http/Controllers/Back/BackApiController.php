@@ -92,21 +92,21 @@ class BackApiController extends WebController
 
     private function getHTMLAlertBox(User $user)
     {
-        return "<div id='front-message' uk-alert><a class='uk-alert-close' uk-close></a><p>User <b>$user->name</b> changed.</p></div>";
+        return "<div id='front-message' class='uk-alert-primary uk-padding-small uk-margin-small' uk-alert><a class='uk-alert-close' uk-close></a><p>User <b>$user->name</b> changed.</p></div>";
     }
 
     private function getHTMLRoleAlertBox(Role $role)
     {
-        return "<div id='front-message' uk-alert><a class='uk-alert-close' uk-close></a><p>Role <b>$role->name</b> changed.</p></div>";
+        return "<div id='front-message' class='uk-alert-primary uk-padding-small uk-margin-small' uk-alert><a class='uk-alert-close' uk-close></a><p>Role <b>$role->name</b> changed.</p></div>";
     }
 
     private function getHTMLLanguageAlertBox(Language $language)
     {
-        return "<div id='front-message' uk-alert><a class='uk-alert-close' uk-close></a><p>Language <b>$language->name</b> changed.</p></div>";
+        return "<div id='front-message' class='uk-alert-primary uk-padding-small uk-margin-small' uk-alert><a class='uk-alert-close' uk-close></a><p>Language <b>$language->name</b> changed.</p></div>";
     }
 
     private function getHTMLAlertErrorBox(string $message = 'Unknown error')
     {
-        return "<div id='front-message' class=\"uk-alert-danger\" uk-alert><a class='uk-alert-close' uk-close></a><p> <b>$message</b> </p></div>";
+        return "<div id='front-message' class=\"uk-alert-danger uk-padding-small uk-margin-small\" uk-alert><a class='uk-alert-close' uk-close></a><p> <b>$message</b> </p></div>";
     }
 }

@@ -1,11 +1,6 @@
-{{--<div id="front-message" uk-alert>
-    <a class="uk-alert-close" uk-close></a>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.</p>
-</div>--}}
-
+@include(config('settings.themeIncludes').'.displayMessages')
 <table id="main-table"
-       class="uk-table uk-table-hover uk-table-divider uk-background-muted uk-table-small uk-text-small">
+       class="uk-table uk-table-hover uk-table-divider uk-background-muted uk-table-small uk-text-small uk-padding-small uk-margin-small">
     <thead>
     <tr>
         <th>
@@ -39,12 +34,24 @@
         </th>
     </tr>
     </thead>
+    <tfoot>
+    <tr>
+        <td></td>
+        <td>
+            <a class="uk-button uk-button-secondary uk-button-small" href="{{route('backend.user.create')}}">Create
+                new</a>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tfoot>
     <tbody>
     @foreach($users as $user)
         <tr>
             <td>{{$user->id}}</td>
-            <td>{{$user->name}}</td>
-            <td>{{$user->email}}</td>
+            <td><a href="{{route('backend.user.edit',$user->id)}}">{{$user->name}}</a></td>
+            <td><a href="{{route('backend.user.edit',$user->email)}}">{{$user->email}}</a></td>
             <td>{{$user->rolesToString()}}</td>
             <td>{{$user->language->name}}</td>
             <td>

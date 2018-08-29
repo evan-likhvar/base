@@ -15,24 +15,10 @@ class BackController extends WebController
         $this->template = config('settings.backEndTheme') . '.templates.main-template';
     }
 
-    public function renderOutput()
-    {
 
-        //dd($this->vars);
-
-        return view($this->template)->with($this->vars);//->withMessages($this->frontMessage);
-    }
 
     public function index()
     {
-        /*  if (Gate::denies('viewAdminDashboard')) {
-              abort(403);
-          }*/
-
-        //$this->authorize('viewAdminDashboard');
-
-
-
         $this->vars = array_add($this->vars, 'content', '');
 
         return $this->renderOutput();

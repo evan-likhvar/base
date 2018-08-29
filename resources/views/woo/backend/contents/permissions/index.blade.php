@@ -1,13 +1,8 @@
-<div uk-alert>
-    <a class="uk-alert-close" uk-close></a>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.</p>
-</div>
-
+@include(config('settings.themeIncludes').'.displayMessages')
 <div class="uk-background-muted">
-    <form action="{{ route('backend.permission.update',1) }}" method="POST">
+    <form action="{{ route('backend.permission.update') }}" method="POST">
         {{ csrf_field() }}
-        <table class="uk-table uk-table-divider uk-table-striped uk-table-small">
+        <table class="uk-table uk-table-divider uk-table-striped uk-table-small uk-padding-small uk-margin-small">
             <thead>
             <tr>
                 <th>Privileges</th>

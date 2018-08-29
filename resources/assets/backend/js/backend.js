@@ -220,14 +220,14 @@ function toggleActiveLanguage(eventTarget) {
                 document.getElementById("front-message").remove();
             }
             document.getElementById('main-table').insertAdjacentHTML('beforebegin',
-                '<div id="front-message" class="uk-alert-danger" uk-alert><a class="uk-alert-close" uk-close></a><p>' +
+                '<div id="front-message" class="uk-alert-danger uk-padding-small uk-margin-small" uk-alert><a class="uk-alert-close" uk-close></a><p>' +
                 error.message
                 + '</p></div>'
             );
             if (error.response.data.errors) {
                 for (key in error.response.data.errors) {
                     document.getElementById('main-table').insertAdjacentHTML('beforebegin',
-                        '<div id="front-message" class="uk-alert-danger" uk-alert><a class="uk-alert-close" uk-close></a><p>' +
+                        '<div id="front-message" class="uk-alert-danger uk-padding-small uk-margin-small" uk-alert><a class="uk-alert-close" uk-close></a><p>' +
                         error.response.data.errors[key]
                         + '</p></div>'
                     );

@@ -2,7 +2,7 @@
     <div class="uk-container uk-padding-small">
         <div class="uk-grid-match" uk-grid>
             <div class="uk-width-auto@m">
-                <h2>{{$title}}</h2>
+                <h2>{!! $title !!}</h2>
             </div>
             <div class="uk-width-1-3@m">
                 <div class="uk-grid-small uk-margin-remove-top" uk-grid>

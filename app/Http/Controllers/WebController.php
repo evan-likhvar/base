@@ -23,6 +23,10 @@ class WebController extends Controller
             return $next($request);
         });
     }
+    public function renderOutput()
+    {
+        return view($this->template)->with($this->vars)->withMessages($this->frontMessage);
+    }
 
     protected function setupFrontMessageBag()
     {
@@ -36,15 +40,25 @@ class WebController extends Controller
     protected function addFrontMessage(array $message)
     {
         $this->frontMessage->addArray('frontMessages', $message);
+        $this->refreshSessionMessageBag();
     }
 
     protected function addResultMessage(array $message)
     {
         $this->frontMessage->addArray('resultMessages', $message);
+        $this->refreshSessionMessageBag();
     }
 
     protected function addErrorMessage(array $message)
     {
         $this->frontMessage->addArray('errorMessages', $message);
+        $this->refreshSessionMessageBag();
+    }
+
+    private function refreshSessionMessageBag()
+    {
+        if (session('frontMessageBag'))
+            session()->forget('frontMessageBag');
+        session(['frontMessageBag'=>$this->frontMessage->toArray()]);
     }
 }
