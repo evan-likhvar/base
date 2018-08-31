@@ -1,13 +1,15 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
-// Variables
-@import 'variables';
+/* Add some uikit variables if desired */
+$global-font-family: 'Roboto', sans-serif;
+$base-body-font-weight: 300;
+$base-heading-font-weight: 300;
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "../../../node_modules/uikit/src/scss/variables-theme";
+@import "../../../node_modules/uikit/src/scss/variables";
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+@import "../../../node_modules/uikit/src/scss/mixins";
+@import "../../../node_modules/uikit/src/scss/mixins-theme";
+
+@import "../../../node_modules/uikit/src/scss/uikit";
+@import "../../../node_modules/uikit/src/scss/uikit-theme";

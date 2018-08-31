@@ -6,5 +6,7 @@ return [
     'defaultCountryISO2'            => 'GB',
     'defaultCountryLanguage'        => 'en',
     'themeIncludes'                 => 'woo.includes',
-    'backEndTheme'                  => 'woo.backend'
+    'backEndTheme'                  => 'woo.backend',
+    'frontEndTheme'                 => 'woo.frontend'
+
 ];
