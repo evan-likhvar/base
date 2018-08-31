@@ -37,13 +37,18 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-
+        $this->mapAuthRoutes();
         $this->mapWebRoutes();
-
         $this->mapBackendRoutes();
-
         if (App::environment(['local', 'testing']))
             $this->mapDevRoutes();
+    }
+
+    protected function mapAuthRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/auth.php'));
     }
 
     /**
