@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 class BackLanguageController extends BackController
 {
 
-    public function __construct()
-    {
-        parent::__construct();
-
-    }
 
     public function index()
     {

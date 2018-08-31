@@ -51,7 +51,7 @@
         <tr>
             <td>{{$user->id}}</td>
             <td><a href="{{route('backend.user.edit',$user->id)}}">{{$user->name}}</a></td>
-            <td><a href="{{route('backend.user.edit',$user->email)}}">{{$user->email}}</a></td>
+            <td><a href="{{route('backend.user.edit',$user->id)}}">{{$user->email}}</a></td>
             <td>{{$user->rolesToString()}}</td>
             <td>{{$user->language->name}}</td>
             <td>

@@ -12,6 +12,9 @@ class WebController extends Controller
     protected $registry;
     protected $frontMessage;
     protected $user;
+    protected $vars;
+    protected $template;
+
 
     public function __construct()
     {
@@ -55,6 +58,11 @@ class WebController extends Controller
         $this->refreshSessionMessageBag();
     }
 
+    protected function renewSessionBag()
+    {
+        session()->forget('frontMessageBag');
+        $this->setupFrontMessageBag();
+    }
     private function refreshSessionMessageBag()
     {
         if (session('frontMessageBag'))

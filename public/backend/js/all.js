@@ -31387,6 +31387,9 @@ function toggleDashboard(eventTarget) {
                     );
                 }
             }
+        })
+        .then(function () {
+            clearMessageBag();
         });
 }
 
@@ -31447,6 +31450,9 @@ function toggleActiveUser(eventTarget) {
                     );
                 }
             }
+        })
+        .then(function () {
+            clearMessageBag();
         });
 }
 
@@ -31506,6 +31512,9 @@ function toggleActiveRole(eventTarget) {
                     );
                 }
             }
+        })
+        .then(function () {
+            clearMessageBag();
         });
 }
 
@@ -31517,6 +31526,7 @@ function toggleActiveLanguage(eventTarget) {
 
     axios.post('/dashboard/toggle-language-active', data)
         .then(response => {
+
             while (document.contains(document.getElementById("front-message"))) {
                 document.getElementById("front-message").remove();
             }
@@ -31565,5 +31575,15 @@ function toggleActiveLanguage(eventTarget) {
                     );
                 }
             }
+        })
+        .then(function () {
+            clearMessageBag();
+        });
+}
+
+function clearMessageBag() {
+    axios.get('/dashboard/clear-message-bag')
+        .catch(function (error) {
+            console.log(error);
         });
 }

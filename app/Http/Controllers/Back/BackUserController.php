@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Back;
 
 
+use App\Models\Language;
+use App\Models\Role;
 use App\Repositories\SiteUser\BackUsers;
 use App\User;
 use Illuminate\Http\Request;
@@ -11,11 +13,6 @@ class BackUserController extends BackController
 {
     private $sectionVars;
 
-    public function __construct()
-    {
-        parent::__construct();
-
-    }
 
     public function index()
     {
@@ -36,7 +33,6 @@ class BackUserController extends BackController
         }
 
         $users = $users->paginate(20);
-//todo Add user users into the user table content
 
         $this->vars = array_add(
             $this->vars,'section_title',$this->getTitle('Roles info')
@@ -63,7 +59,9 @@ class BackUserController extends BackController
             view(config('settings.backEndTheme') . '.contents.users.edit')
                 ->with([
                     'user' => $user,
-                    'messages' => $this->frontMessage->toArray()
+                    'messages' => $this->frontMessage->toArray(),
+                    'languages'=> Language::all()->pluck('full_name','id')->toArray(),
+                    'roles' => Role::all()->pluck('name','id')->toArray(),
                 ])->render());
         return $this->renderOutput();
 
@@ -71,15 +69,23 @@ class BackUserController extends BackController
     public function create()
     {
         $this->vars = array_add($this->vars,'section_title', $this->getTitle('Define new site user'));
-        $this->vars = array_add($this->vars, 'content', view(config('settings.backEndTheme') . '.contents.users.create')
-            ->render());
+        $this->vars = array_add($this->vars, 'content',
+            view(config('settings.backEndTheme') . '.contents.users.create')
+                ->with([
+                    'languages'=> Language::all()->pluck('full_name','id')->toArray(),
+                    'roles' => Role::all()->pluck('name','id')->toArray(),
+                ])
+                ->render());
         return $this->renderOutput();
     }
 
     public function store(Request $request)
     {
         $user = User::create($request->all());
+        $user->roles()->sync(array_keys($request['roles']));
+
         $this->addFrontMessage(['message' => "User <b>$user->full_name</b> created successfully"]);
+
         return redirect()->route('backend.user.index');
     }
 
@@ -87,6 +93,8 @@ class BackUserController extends BackController
     {
         $user = User::find($userId);
         $user->update($request->all());
+        $user->roles()->sync(array_keys($request['roles']));
+
         $this->addFrontMessage(['message' => "User <b>$user->full_name</b> updated successfully"]);
         return redirect()->back();
     }

@@ -9,6 +9,7 @@ Route::name('backend')->resource('role',        'BackRoleController',           
 Route::name('backend')->resource('language',    'BackLanguageController',       ['except' => ['show','destroy']]);
 
 //api routes
+Route::get('/clear-message-bag',        'BackApiController@clearMessageBag');
 Route::post('/toggle-dashboard-access', 'BackApiController@toggleDashboardAccessProperty');
 Route::post('/toggle-user-active',      'BackApiController@toggleUserActiveProperty');
 Route::post('/toggle-role-active',      'BackApiController@toggleRoleActiveProperty');

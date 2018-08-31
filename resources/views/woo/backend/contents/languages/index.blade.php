@@ -16,14 +16,14 @@
         <th>
             <a href="
 {{route('backend.language.index')}}?sort=full_name&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}
-                ">name</a>
+                    ">name</a>
         </th>
         <th>active</th>
         <th>
             <a href="
 {{route('backend.language.index')}}?sort=created_at&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}
                     ">created at</a>
-            </th>
+        </th>
         <th>
             <a href="
 {{route('backend.language.index')}}?sort=updated_at&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}
@@ -34,8 +34,9 @@
     <tfoot>
     <tr>
         <td></td>
-        <td >
-            <a class="uk-button uk-button-secondary uk-button-small" href="{{route('backend.language.create')}}">Create new</a>
+        <td>
+            <a class="uk-button uk-button-secondary uk-button-small" href="{{route('backend.language.create')}}">Create
+                new</a>
         </td>
         <td></td>
         <td></td>

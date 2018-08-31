@@ -11,9 +11,9 @@
 </div>
 
 <div class="uk-margin">
-    <label class="uk-form-label" for="form-stacked-text">Language status</label>
+    <label class="uk-form-label" for="form-stacked-text">Role status</label>
     <div class="uk-form-controls">
-        {!! Form::text('active',$role->active,["class"=>'uk-input' ]) !!}
+        {!! Form::select('active',[0=>'Activated',1=>'Disabled'],$role->active,["class"=>'uk-select' ]) !!}
     </div>
 </div>
 <button class="uk-button uk-button-secondary uk-button-small">Submit</button>

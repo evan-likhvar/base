@@ -1,7 +1,7 @@
-<div class="uk-section uk-section-muted uk-padding-remove">
+<div class="uk-section uk-section-muted uk-padding-remove uk-text-small">
     <div class="uk-container uk-padding-small">
         <div class="uk-grid-match" uk-grid>
-            <div class="uk-width-auto@m">
+            <div class="uk-width-1-3@m">
                 <h2>{!! $title !!}</h2>
             </div>
             <div class="uk-width-1-3@m">
