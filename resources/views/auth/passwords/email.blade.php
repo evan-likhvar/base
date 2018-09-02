@@ -1,47 +1,34 @@
-@extends('layouts.app')
+<div class="uk-child-width-expand@s uk-text-left uk-padding-large" uk-grid>
+    <div></div>
+    <div class="uk-width-1-2@m">
+        <div class="uk-container uk-container-expand uk-background-muted uk-text-center">
+            {{ __('Reset Password') }}
+        </div>
+        <div class="uk-container uk-container-expand uk-background-default uk-text-center uk-margin">
+            <form class="uk-form-horizontal uk-margin-large"
+                  method="POST" action="{{ route('password.email') }}">
+                @csrf
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="uk-margin">
+                    <label for="email" class="uk-form-label">{{ __('E-Mail Address') }}</label>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="email" type="email" name="email" placeholder="e-mail">
+                        @if ($errors->has('email'))
+                            <span><strong>{{ $errors->first('email') }}</strong></span>
+                        @endif
+                    </div>
                 </div>
-            </div>
+                <div class="form-group row mb-0">
+                    <div class="col-md-8 offset-md-4">
+                        <button type="submit" class="btn btn-primary">
+                            {{ __('Send Password Reset Link') }}
+                        </button>
+
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+    <div></div>
 </div>
-@endsection

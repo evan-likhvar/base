@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Repositories\Auth\AuthRedirect;
 use App\User;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class RegisterController extends FrontController
 {
     use AuthRedirect;
 
@@ -34,6 +34,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        parent::__construct();
     }
 
     /**
@@ -65,4 +66,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function showRegistrationForm()
+    {
+        $this->vars = array_add($this->vars, 'content', view('auth.register')->render());
+        return $this->renderOutput();
+    }
+
 }
