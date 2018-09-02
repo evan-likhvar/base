@@ -14,13 +14,15 @@
     </style>--}}
 </head>
 <body>
-<div class="uk-container">
-<div class="uk-section-primary uk-preserve-color">
+
+
+
 
     @yield('navbar')
     @yield('content')
     @yield('footer')
-</div>
-</div>
+
+
+
 </body>
 </html>

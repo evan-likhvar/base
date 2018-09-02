@@ -37,5 +37,6 @@ class LoginController extends FrontController
     public function showLoginForm()
     {
         $this->vars = array_add($this->vars, 'content', view('auth.login')->render());
-        return $this->renderOutput();    }
+        return $this->renderOutput();
+    }
 }
