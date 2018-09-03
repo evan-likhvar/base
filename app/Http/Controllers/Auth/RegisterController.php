@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Repositories\Auth\AuthRedirect;
 use App\User;
 use App\Http\Controllers\Front\FrontController;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -35,6 +38,7 @@ class RegisterController extends FrontController
     {
         $this->middleware('guest');
         parent::__construct();
+        $this->checkRequestCountPerHours();
     }
 
     /**
@@ -73,4 +77,46 @@ class RegisterController extends FrontController
         return $this->renderOutput();
     }
 
+    private function checkRequestCountPerHours()
+    {
+
+        $ip = (Request::capture())->ip();
+        $requestCount = DB::table('auth_register_user_requests')
+            ->where('ip', $ip)->first();
+
+        if (!$requestCount) {
+            DB::table('auth_register_user_requests')
+                ->insert([
+                    'ip'=>$ip,
+                    'date' => Carbon::now(),
+                    'count' => 1
+                ]);
+            return;
+        }
+
+        // check last activity by ip
+        // if less than config setting increase count of attempt
+        // else renew counting and activity date
+
+        $lastActionDate = new Carbon($requestCount->date);
+
+        if ($lastActionDate->diffInHours(Carbon::now()) < config('settings.registerUserControlTime')) {
+            DB::table('auth_register_user_requests')
+                ->where('id', $requestCount->id)
+                ->update(['count' => $requestCount->count+1]);
+        } else {
+            DB::table('auth_register_user_requests')
+                ->where('id', $requestCount->id)
+                ->update(['count' => 1,'date'=>Carbon::now()]);
+        }
+
+        // if count of attempt more than threshold to save IP into black list
+        if ($requestCount->count >= config('settings.maxRegisterUserByControlTime')) {
+            DB::table('auth_ip_black_lists')
+                ->insert([
+                    'ip' => $ip,
+                    'comment'=>'too many register user request'
+                ]);
+        }
+    }
 }

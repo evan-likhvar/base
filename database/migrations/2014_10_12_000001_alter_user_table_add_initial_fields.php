@@ -17,6 +17,7 @@ class AlterUserTableAddInitialFields extends Migration
             $table->unsignedInteger('language_id')->index()->nullable();
             $table->boolean('dashboard_enable')->index()->default(0);
             $table->boolean('active')->index()->default(0);
+            $table->timestamp('last_login')->nullable();
 
             $table->foreign('language_id')->references('id')->on('languages');
         });
@@ -36,6 +37,7 @@ class AlterUserTableAddInitialFields extends Migration
             $table->dropColumn('language_id');
             $table->dropColumn('active');
             $table->dropColumn('dashboard_enable');
+
         });
     }
 }

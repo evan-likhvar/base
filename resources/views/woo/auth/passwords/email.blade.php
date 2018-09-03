@@ -4,7 +4,7 @@
         <div class="uk-container uk-container-expand uk-background-muted uk-text-center">
             {{ __('Reset Password') }}
         </div>
-        <div class="uk-container uk-container-expand uk-background-default uk-text-center uk-margin">
+        <div class="uk-container uk-container-expand uk-background-default uk-text-left uk-margin">
             <form class="uk-form-horizontal uk-margin-large"
                   method="POST" action="{{ route('password.email') }}">
                 @csrf
