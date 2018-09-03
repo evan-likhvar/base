@@ -7,14 +7,14 @@ use App\Models\Auth\AuthFailedLogin;
 use App\Models\Auth\AuthUserUnderAttack;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Failed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LogFailedLogin
 {
 
-    public function handle(Login $event)
+    public function handle(Failed $event)
     {
         $ip = (Request::capture())->ip();
 
@@ -24,8 +24,9 @@ class LogFailedLogin
 
         if (!$attacking) {
 
-            if (User::where('email', $event->credentials['email'])->first())
+            if ($user = User::where('email', $event->credentials['email'])->first())
                 AuthUserUnderAttack::create([
+                    'user_id' => $user->id,
                     'login' => $event->credentials['email'],
                     'count_attempts' => 1
                 ]);

@@ -8,4 +8,6 @@ class AuthFailedLogin extends Model
 {
     public $timestamps = false;
 
+    protected $fillable = ['ip','date','count'];
+
 }

@@ -18,7 +18,7 @@ class CreateAuthIpBlackListsTable extends Migration
             $table->unsignedTinyInteger('active')->index()->default(1);
             $table->ipAddress('ip')->index();
             $table->timestamp('date')->index();
-            $table->string('comments',60)->index()->default(null);
+            $table->string('comment',60)->index()->default(null);
 
         });
     }
