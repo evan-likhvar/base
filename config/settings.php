@@ -5,6 +5,7 @@ return [
     'IP_STACK_KEY'                  => env('IP_STACK_KEY'),
     'defaultCountryISO2'            => 'GB',
     'defaultCountryLanguage'        => 'en',
+    'themeRoot'                     => 'woo',
     'themeIncludes'                 => 'woo.includes',
     'backEndTheme'                  => 'woo.backend',
     'frontEndTheme'                 => 'woo.frontend'

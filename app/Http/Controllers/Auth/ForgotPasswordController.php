@@ -34,7 +34,7 @@ class ForgotPasswordController extends FrontController
 
     public function showLinkRequestForm()
     {
-        $this->vars = array_add($this->vars, 'content', view('auth.passwords.email')->render());
+        $this->vars = array_add($this->vars, 'content', view(config('settings.themeRoot') . '.auth.passwords.email')->render());
         return $this->renderOutput();
     }
 

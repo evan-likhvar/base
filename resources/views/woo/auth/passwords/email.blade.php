@@ -19,12 +19,10 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group row mb-0">
-                    <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Send Password Reset Link') }}
-                        </button>
-
+                <div class="uk-margin">
+                    <div class="uk-form-controls">
+                        <button class="uk-button uk-button-primary uk-button-small"
+                                type="submit">{{ __('Send Password Reset Link') }}</button>
                     </div>
                 </div>
             </form>

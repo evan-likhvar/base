@@ -5,7 +5,7 @@
             {{Auth::user()->name}} personal dashboard
         </div>
         <div class="uk-container uk-container-expand uk-background-default uk-text-center uk-margin">
-            <a class="uk-button uk-button-default" href="{{ route('logout') }}"
+            <a class="uk-button uk-button-primary uk-button-small" href="{{ route('logout') }}"
                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -69,7 +69,7 @@ class RegisterController extends FrontController
 
     public function showRegistrationForm()
     {
-        $this->vars = array_add($this->vars, 'content', view('auth.register')->render());
+        $this->vars = array_add($this->vars, 'content', view(config('settings.themeRoot') . '.auth.register')->render());
         return $this->renderOutput();
     }
 
