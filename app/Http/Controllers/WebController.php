@@ -20,7 +20,6 @@ class WebController extends Controller
     {
         $this->registry = new SessionRegistry();
         $this->middleware(function ($request, $next) {
-
             $this->user = Auth::user();
             $this->setupFrontMessageBag();
             return $next($request);

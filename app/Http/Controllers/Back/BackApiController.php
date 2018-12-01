@@ -114,7 +114,7 @@ class BackApiController extends WebController
 <a class='uk-alert-close' uk-close></a><p>Language <b>$language->name</b> changed.</p></div>";
     }
 
-    private function getHTMLAlertErrorBox(string $message = 'Unknown error')
+    private function getHTMLAlertErrorBox($message = 'Unknown error')
     {
         return "<div id='front-message' class=\"uk-alert-danger uk-padding-small uk-margin-small\" uk-alert>
 <a class='uk-alert-close' uk-close></a><p> <b>$message</b> </p></div>";

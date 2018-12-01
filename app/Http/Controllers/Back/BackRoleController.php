@@ -37,15 +37,17 @@ class BackRoleController extends BackController
         $roles = $roles->paginate(20);
 
         $this->vars = array_add(
-            $this->vars,'section_title',$this->getTitle('Roles info')
+            $this->vars, 'section_title', $this->getTitle('Roles info')
         );
 
         $this->vars = array_add(
             $this->vars,
             'content',
             view(config('settings.backEndTheme') . '.contents.roles.index')
-                ->with('roles', $roles)->render()
-        );
+                ->with([
+                    'roles' => $roles,
+                    'messages' => $this->frontMessage->toArray()
+                ])->render());
 
         return $this->renderOutput();
     }
@@ -54,8 +56,8 @@ class BackRoleController extends BackController
     {
         $role = Role::find($roleId);
         $this->vars = array_add(
-            $this->vars,'section_title',
-            $this->getTitle('Role edit - <span style="color:#1e87f0"><b>'.$role->name.'</b></span>')
+            $this->vars, 'section_title',
+            $this->getTitle('Role edit - <span style="color:#1e87f0"><b>' . $role->name . '</b></span>')
         );
         $this->vars = array_add($this->vars, 'content',
             view(config('settings.backEndTheme') . '.contents.roles.edit')
@@ -66,9 +68,10 @@ class BackRoleController extends BackController
         return $this->renderOutput();
 
     }
+
     public function create()
     {
-        $this->vars = array_add($this->vars,'section_title', $this->getTitle('Define new site role'));
+        $this->vars = array_add($this->vars, 'section_title', $this->getTitle('Define new site role'));
         $this->vars = array_add($this->vars, 'content', view(config('settings.backEndTheme') . '.contents.roles.create')
             ->render());
         return $this->renderOutput();
@@ -78,7 +81,7 @@ class BackRoleController extends BackController
     {
         $role = Role::create($request->all());
         $this->addFrontMessage(['message' => "Role <b>$role->full_name</b> created successfully"]);
-        return redirect()->route('backend.role.index');
+        return redirect()->route('backend.role.index')->with('frontMessageBag', $this->frontMessage);
     }
 
     public function update(Request $request, int $roleId)
@@ -92,11 +95,11 @@ class BackRoleController extends BackController
     private function getTitle(string $title)
     {
 
-        $this->sectionVars = array_add($this->sectionVars,'title',$title);
-        $this->sectionVars = array_add($this->sectionVars,'roles', Role::all());
+        $this->sectionVars = array_add($this->sectionVars, 'title', $title);
+        $this->sectionVars = array_add($this->sectionVars, 'roles', Role::all());
 
         $this->vars = array_add(
-            $this->vars,'section_title',
+            $this->vars, 'section_title',
             view(config('settings.backEndTheme') . '.section-title.roles.title')
                 ->with($this->sectionVars)->render()
         );

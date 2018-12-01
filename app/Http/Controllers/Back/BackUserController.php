@@ -42,7 +42,10 @@ class BackUserController extends BackController
             $this->vars,
             'content',
             view(config('settings.backEndTheme') . '.contents.users.index')
-                ->with('users', $users)->render()
+                ->with([
+                    'users'=> $users,
+                    'messages' => $this->frontMessage->toArray(),
+                ])->render()
         );
 
         return $this->renderOutput();
@@ -86,7 +89,7 @@ class BackUserController extends BackController
 
         $this->addFrontMessage(['message' => "User <b>$user->full_name</b> created successfully"]);
 
-        return redirect()->route('backend.user.index');
+        return redirect()->route('backend.user.index')->with('frontMessageBag',$this->frontMessage);
     }
 
     public function update(Request $request, int $userId)
@@ -101,7 +104,7 @@ class BackUserController extends BackController
 
     private function getTitle(string $title)
     {
-        $this->sectionVars = array_add($this->sectionVars,'title','Users info');
+        $this->sectionVars = array_add($this->sectionVars,'title',$title);
         $this->sectionVars = array_add($this->sectionVars,'users',new BackUsers());
 
         $this->vars = array_add(

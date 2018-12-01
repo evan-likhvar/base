@@ -73,7 +73,7 @@ class BackLanguageController extends BackController
     {
         $language = Language::create($request->all());
         $this->addFrontMessage(['message' => "Language <b>$language->full_name</b> created successfully"]);
-        return redirect()->route('backend.language.index');
+        return redirect()->route('backend.language.index')->with('frontMessageBag', $this->frontMessage);
     }
 
     public function update(Request $request, int $languageId)

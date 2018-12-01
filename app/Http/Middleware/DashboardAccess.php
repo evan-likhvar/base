@@ -10,9 +10,10 @@ class DashboardAccess
 
     public function handle($request, Closure $next)
     {
-        if ( Auth::check() && ($request->user()->dashboard_enable == 1) ) {
+        if (Auth::check() && ($request->user()->dashboard_enable == 1)) {
             return $next($request);
         }
-        abort(404);
-        return redirect('/');    }
+        //abort(404);
+        return redirect('/');
+    }
 }
