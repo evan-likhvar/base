@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Repositories\SiteUser\BackUsers;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BackUserController extends BackController
 {
@@ -17,6 +18,30 @@ class BackUserController extends BackController
     public function index()
     {
         $input = Request::capture()->all();
+
+        if (!empty($input)) {
+            $validator = Validator::make($input,[
+                'sort' => 'nullable|in:nayme,email,created_at,updated_at',
+                'order'=> 'required_with:sort|in:asc,desc'
+            ]);
+        }
+
+        if (isset($validator) && $validator->fails()) {
+
+            $this->renewSessionBag();
+
+            $tm1 = $validator->errors()->all();
+            $tm2 = $validator->errors()->messages();
+            $tm3 = $validator->getMessageBag()->toArray();
+            $tm4 = $validator->getMessageBag()->keys();
+
+            $this->addErrorMessage(['errors' => 'fghrghrg']);
+
+
+        } else {
+            $this->renewSessionBag();
+
+        }
 
         $users = User::whereNested(function ($query) use ($input) {
             if (!empty($input['filter_name']))

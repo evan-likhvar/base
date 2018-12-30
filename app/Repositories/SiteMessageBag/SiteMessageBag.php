@@ -13,7 +13,7 @@ use Illuminate\Support\MessageBag;
 
 class SiteMessageBag extends MessageBag
 {
-    public function addArray(string $key, array $messages)
+    public function addArray(string $key, array $messages): SiteMessageBag
     {
         foreach ($messages as $k => $message) {
             if (isset($this->messages[$key][$k]))
