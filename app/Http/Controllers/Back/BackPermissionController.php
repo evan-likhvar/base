@@ -10,6 +10,7 @@ class BackPermissionController extends BackController
 {
     private $sectionVars;
 
+
     public function __construct()
     {
         parent::__construct();

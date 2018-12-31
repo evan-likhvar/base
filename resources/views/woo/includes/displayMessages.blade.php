@@ -1,5 +1,4 @@
 
-
 @if(!empty($messages))
 
     @if (!empty($messages['frontMessages']))

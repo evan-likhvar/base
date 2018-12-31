@@ -47,7 +47,7 @@
             <div class="uk-margin">
                 <label class="uk-form-label" for="form-stacked-text">confirm</label>
                 <div class="uk-form-controls">
-                    {!! Form::text('confirm',null,["class"=>'uk-input uk-form-small']) !!}
+                    {!! Form::text('password_confirmation',null,["class"=>'uk-input uk-form-small']) !!}
                 </div>
             </div>
         </div>

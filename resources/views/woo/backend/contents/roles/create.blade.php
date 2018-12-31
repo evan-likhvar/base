@@ -1,3 +1,4 @@
+@include(config('settings.themeIncludes').'.displayMessages')
 
 {!! Form::open(['route'=>['backend.role.store'],
 'class'=>'uk-form-horizontal uk-background-muted uk-padding-small uk-margin-small']) !!}
