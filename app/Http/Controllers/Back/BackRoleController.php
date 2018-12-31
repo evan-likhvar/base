@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Back;
 
 use App\Exceptions\ValidationException;
 use App\Models\Role;
-use App\Repositories\SiteRole\phpRepository;
+use App\Repositories\SiteRole\BackRoleRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,7 @@ class BackRoleController extends BackController
 
     private $roleRepository;
 
-    public function __construct(phpRepository $roleRepository)
+    public function __construct(BackRoleRepository $roleRepository)
     {
         parent::__construct();
 
@@ -88,9 +88,8 @@ class BackRoleController extends BackController
     public function create()
     {
         $this->vars = array_add($this->vars, 'section_title', $this->getTitle('Define new site role'));
-        $this->vars = array_add($this->vars, 'content', view(
-            config('settings.backEndTheme') . '.contents.roles.create'
-        )->with('messages', $this->frontMessage->toArray())->render());
+        $this->vars = array_add($this->vars, 'content', view(config('settings.backEndTheme') . '.contents.roles.create')
+            ->with('messages', $this->frontMessage->toArray())->render());
         return $this->renderOutput();
     }
 

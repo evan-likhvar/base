@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Repositories\SiteRole;
+namespace App\Repositories\SiteLanguage;
 
 use App\Exceptions\ValidationException;
-use App\Models\Role;
+use App\Models\Language;
 use Illuminate\Support\Facades\Validator;
 
-class BackRoleRepository
+class BackLanguageRepository
 {
 
-    public function getRoleById(int $userId) : Role
+    public function getLanguageById(int $id) : Language
     {
-        return Role::findorfail($userId);
+        return Language::findorfail($id);
     }
 
     /**
@@ -22,7 +22,8 @@ class BackRoleRepository
     public function validateUpdateData(array $data): array
     {
         $validator = Validator::make($data, [
-            'name' => 'required|string|max:30',
+            'name' => 'required|string|size:2',
+            'full_name' => 'required|string|max:30',
             'active' => 'required|in:0,1',
         ]);
 
@@ -41,7 +42,8 @@ class BackRoleRepository
     public function validateStoreData(array $data): array
     {
         $validator = Validator::make($data, [
-            'name' => 'required|string|max:30',
+            'name' => 'required|string|size:2',
+            'full_name' => 'required|string|max:30',
         ]);
 
         if ($validator->fails()) {
@@ -59,7 +61,7 @@ class BackRoleRepository
     public function validateSort(array $data): bool
     {
         $validator = Validator::make($data,[
-            'sort' => 'nullable|in:name,created_at,updated_at',
+            'sort' => 'nullable|in:name,full_name,created_at,updated_at',
             'order'=> 'required_with:sort|in:asc,desc'
         ]);
 

@@ -16,7 +16,7 @@
         <th>
             <a href="
 {{route('backend.language.index')}}?sort=full_name&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}
-                    ">name</a>
+                    ">full name</a>
         </th>
         <th>active</th>
         <th>

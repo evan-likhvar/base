@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers\Back;
 
+use App\Exceptions\ValidationException;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Repositories\SitePermission\BackPermissionRepository;
 use Illuminate\Http\Request;
 
 class BackPermissionController extends BackController
 {
     private $sectionVars;
+    /**
+     * @var BackPermissionRepository
+     */
+    private $backPermissionRepository;
 
 
-    public function __construct()
+    public function __construct(BackPermissionRepository $backPermissionRepository)
     {
         parent::__construct();
         $this->sectionVars = array_add($this->sectionVars,'title','Permissions info');
@@ -21,6 +27,7 @@ class BackPermissionController extends BackController
             view(config('settings.backEndTheme') . '.section-title.permissions.title')
                 ->with($this->sectionVars)->render()
         );
+        $this->backPermissionRepository = $backPermissionRepository;
     }
 
     public function index()
@@ -39,6 +46,16 @@ class BackPermissionController extends BackController
 
     public function update(Request $request)
     {
+        try {
+            $this->backPermissionRepository->validateUpdateData($request->except('_token'));
+        } catch (ValidationException $exception) {
+            $this->addErrorMessage(['errors' => json_decode($exception->getMessage(), true)]);
+            return redirect()->back()->withInput();
+        } catch (\Exception $exception) {
+            $this->addErrorMessage(['errors' => $exception->getMessage()]);
+            return redirect()->back()->withInput();
+        }
+
         $this->changePermissions($request);
         $this->addFrontMessage(['message' => 'Permissions updated successfully']);
         return redirect()->back();

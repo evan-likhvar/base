@@ -7,7 +7,6 @@ use App\Http\Controllers\WebController;
 use App\Models\Language;
 use App\Models\Role;
 use App\User;
-use function GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 
 class BackApiController extends WebController
