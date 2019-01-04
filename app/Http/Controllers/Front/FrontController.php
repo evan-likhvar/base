@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class FrontController extends WebController
 {
@@ -26,6 +27,9 @@ class FrontController extends WebController
 
     public function index()
     {
+
+        Log::info(__METHOD__);
+
         $this->vars = array_add($this->vars, 'content', view(config('settings.frontEndTheme') . '.contents.main-homepage')->render());
         return $this->renderOutput();
     }

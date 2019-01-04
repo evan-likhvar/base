@@ -33,6 +33,10 @@ return [
     */
 
     'channels' => [
+        'custom' => [
+            'driver' => 'custom',
+            'via' => \App\Services\Logs\LogMonolog::class,
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],
