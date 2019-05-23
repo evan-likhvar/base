@@ -15,7 +15,7 @@ class CreateAuthRegisterUserRequestsTable extends Migration
     {
         Schema::create('auth_register_user_requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->ipAddress('ip')->index();
+            $table->ipAddress('ip')->index()->nullable();
             $table->timestamp('date')->index();
             $table->unsignedSmallInteger('count')->index();
         });

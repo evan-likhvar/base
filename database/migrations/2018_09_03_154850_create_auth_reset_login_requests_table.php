@@ -15,7 +15,7 @@ class CreateAuthResetLoginRequestsTable extends Migration
     {
         Schema::create('auth_reset_login_requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->ipAddress('ip')->index();
+            $table->ipAddress('ip')->index()->nullable();
             $table->timestamp('date')->index();
             $table->unsignedSmallInteger('count')->index();
         });

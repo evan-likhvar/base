@@ -1,5 +1,4 @@
 <?php
-
 return [
     'site_session_registry_name'    => 'woo_registry',
     'IP_STACK_KEY'                  => env('IP_STACK_KEY'),
@@ -9,5 +8,4 @@ return [
     'themeIncludes'                 => 'woo.includes',
     'backEndTheme'                  => 'woo.backend',
     'frontEndTheme'                 => 'woo.frontend'
-
 ];

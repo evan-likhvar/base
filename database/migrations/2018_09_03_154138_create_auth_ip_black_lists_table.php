@@ -16,7 +16,7 @@ class CreateAuthIpBlackListsTable extends Migration
         Schema::create('auth_ip_black_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedTinyInteger('active')->index()->default(1);
-            $table->ipAddress('ip')->index();
+            $table->ipAddress('ip')->index()->nullable();
             $table->timestamp('date')->index();
             $table->string('comment',60)->index()->default(null);
 

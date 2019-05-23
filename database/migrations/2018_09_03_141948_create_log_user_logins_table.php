@@ -11,7 +11,7 @@ class CreateLogUserLoginsTable extends Migration
         Schema::create('log_user_logins', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
-            $table->ipAddress('ip')->index();
+            $table->ipAddress('ip')->index()->nullable();
             $table->timestamp('date')->index();
 
             $table->foreign('user_id')->references('id')->on('users');

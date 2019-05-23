@@ -69,7 +69,7 @@ class ForgotPasswordController extends FrontController
                 ->where('id', $requestCount->id)
                 ->update(['count' => $requestCount->count+1]);
         } else {
-            DB::table('auth_reset_login_request')
+            DB::table('auth_reset_login_requests')
                 ->where('id', $requestCount->id)
                 ->update(['count' => 1,'date'=>Carbon::now()]);
         }
